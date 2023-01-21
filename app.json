@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "wanager",
+    "slug": "wanager",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
