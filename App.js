@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
+import * as SplashScreen from 'expo-splash-screen'
 import { ThemeProvider } from 'styled-components'
 import {
   useFonts,
@@ -11,6 +12,8 @@ import {
 
 import theme from './src/styles/theme'
 
+SplashScreen.preventAutoHideAsync()
+
 export default function App () {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -18,23 +21,30 @@ export default function App () {
     Inter_700Bold
   })
 
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded])
+
   if (!fontsLoaded) {
     return null
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-      </View>
-    </ThemeProvider>
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <ThemeProvider theme={theme}>
+        <Text>💧</Text>
+      </ThemeProvider>
+
+      <StatusBar style="auto" />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
   }
