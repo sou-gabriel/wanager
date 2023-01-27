@@ -2,11 +2,13 @@ export default {
   fonts: {
     inter: {
       regular: 'Inter_400Regular',
+      medium: 'Inter_500Medium',
       semiBold: 'Inter_600SemiBold',
       bold: 'Inter_700Bold'
     }
   },
   colors: {
+    white: '#FFF',
     blue: {
       dark: '#193FC2',
       default: '#2050F6',
